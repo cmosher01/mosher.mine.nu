@@ -1,0 +1,100 @@
+---
+version: '2'
+
+volumes:
+  gedcom:
+  tei:
+
+
+
+
+
+services:
+  fetch-gedcom:
+    image: alpine
+    entrypoint:
+      - /root/fetch-gedcom.sh
+    command:
+      - 'https://github.com/cmosher01/genealogical-data.git'
+      - 'ssh://git@github.com/cmosher01/genealogical-data-private.git'
+    volumes:
+      - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+      - './fetch-gedcom.sh:/root/fetch-gedcom.sh:ro'
+      - "gedcom:/root/gedcom"
+
+  gedcom-web-view:
+    image: cmosher01/gedcom-web-view
+    volumes:
+      - "gedcom:/home/gradle/gedcom:ro"
+    depends_on:
+      - fetch-gedcom
+    environment:
+      GUEST_PASSWORD: "${GED_PASSWORD}"
+    command: gedcom-web-view
+
+
+
+
+
+  fetch-tei:
+    image: alpine
+    entrypoint:
+      - /root/fetch-tei.sh
+    command:
+      - 'ssh://git@github.com/cmosher01/tei-sources.git'
+    volumes:
+      - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+      - './fetch-tei.sh:/root/fetch-tei.sh:ro'
+      - "tei:/root/tei"
+
+  tei:
+    image: cmosher01/tei-server
+    volumes:
+      - "tei:/home/gradle/srv:ro"
+    depends_on:
+      - fetch-tei
+    environment:
+      GUEST_PASSWORD: "${TEI_PASSWORD}"
+
+
+
+
+
+  iip:
+    image: antage/iipimage-server
+    volumes:
+      - "./images:/srv:ro"
+    environment:
+      LOGFILE: syslog
+      VERBOSITY: 6
+      FILESYSTEM_PREFIX: /srv
+      WATERMARK: /srv/watermark.tif
+      WATERMARK_PROBABILITY: .5
+      WATERMARK_OPACITY: .5
+
+
+
+
+
+  unicode:
+    image: cmosher01/unicode-web-test
+
+
+
+
+
+  nginx:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - /etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro
+      - /etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro
+      - ./mosher.mine.nu:/srv:ro
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - gedcom-web-view
+      - iip
+      - tei
+      - unicode
