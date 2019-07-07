@@ -1,0 +1,11 @@
+user-agent: AhrefsBot
+Disallow: /
+
+User-agent: Slurp
+Disallow: /
+
+User-agent: msnbot
+Disallow: /
+
+User-agent: psbot
+Disallow: /

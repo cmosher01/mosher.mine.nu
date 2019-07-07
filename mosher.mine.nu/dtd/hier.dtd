@@ -1,0 +1,10 @@
+<!ELEMENT hier:root (hier:node*)>
+<!ATTLIST hier:root xmlns:hier CDATA #FIXED "https://mosher.mine.nu/xmlns/hier">
+<!ATTLIST hier:root xmlns:lines CDATA #FIXED "https://mosher.mine.nu/xmlns/lines">
+
+<!ELEMENT hier:node (hier:value,hier:node*)>
+<!ATTLIST hier:node hier:level CDATA #IMPLIED>
+<!ATTLIST hier:node hier:invalid CDATA #IMPLIED>
+<!ATTLIST hier:node lines:seq CDATA #REQUIRED>
+
+<!ELEMENT hier:value (#PCDATA)>

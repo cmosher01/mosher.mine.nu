@@ -1,0 +1,6 @@
+<!ELEMENT gedcom:ids (gedcom:id*)>
+<!ATTLIST gedcom:ids xmlns:gedcom CDATA #FIXED "https://mosher.mine.nu/xmlns/gedcom">
+
+<!ELEMENT gedcom:id EMPTY>
+<!ATTLIST gedcom:id gedcom:id CDATA #REQUIRED>
+<!ATTLIST gedcom:id xml:id ID #REQUIRED>

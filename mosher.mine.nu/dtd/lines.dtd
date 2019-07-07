@@ -1,0 +1,5 @@
+<!ELEMENT lines:lines (lines:line*)>
+<!ATTLIST lines:lines xmlns:lines CDATA #FIXED "https://mosher.mine.nu/xmlns/lines">
+
+<!ELEMENT lines:line (#PCDATA)>
+<!ATTLIST lines:line lines:seq CDATA #REQUIRED>

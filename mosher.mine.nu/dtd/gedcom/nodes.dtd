@@ -1,0 +1,19 @@
+<!ELEMENT gedcom:nodes (gedcom:node*)>
+<!ATTLIST gedcom:nodes xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
+<!ATTLIST gedcom:nodes xmlns:gedcom CDATA #FIXED "https://mosher.mine.nu/xmlns/gedcom">
+<!ATTLIST gedcom:nodes xmlns:hier CDATA #FIXED "https://mosher.mine.nu/xmlns/hier">
+<!ATTLIST gedcom:nodes xmlns:lines CDATA #FIXED "https://mosher.mine.nu/xmlns/lines">
+
+<!ELEMENT gedcom:node (gedcom:value,gedcom:node*)>
+<!ATTLIST gedcom:node lines:seq CDATA #IMPLIED>
+<!ATTLIST gedcom:node hier:level CDATA #IMPLIED>
+<!ATTLIST gedcom:node xml:id ID #IMPLIED>
+<!ATTLIST gedcom:node gedcom:id CDATA #IMPLIED>
+<!ATTLIST gedcom:node gedcom:id-valid (true|false) #IMPLIED>
+<!ATTLIST gedcom:node gedcom:tag CDATA #IMPLIED>
+
+<!ELEMENT gedcom:value (#PCDATA)>
+<!ATTLIST gedcom:value xmlns:xlink CDATA #FIXED "http://www.w3.org/1999/xlink">
+<!ATTLIST gedcom:value xlink:href CDATA #IMPLIED>
+<!ATTLIST gedcom:value gedcom:ptr CDATA #IMPLIED>
+
