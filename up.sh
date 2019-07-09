@@ -42,8 +42,8 @@ docker-compose start fetch-tei fetch-gedcom
 docker-compose start iip unicode
 
 
-sleep 10
+sleep 9
 docker-compose start tei gedcom-web-view
 
-sleep 4
+sleep 7
 docker-compose start nginx
