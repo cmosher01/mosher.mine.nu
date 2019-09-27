@@ -6,7 +6,7 @@
 # ./mosher.mine.nu (contains main web site)
 # ./images (contains ptif images)
 # ~/.ssh/id_rsa (private key to access github repositories)
-# /etc/letsencrypt (TLS certificates)
+# /etc/letsencrypt (TLS certificates) (use "sudo certbot renew" to renew)
 #
 # MANUAL SETUP:
 # start WinGeneal VM (must be set up with ftm share)
@@ -17,11 +17,13 @@
 
 # stop gedcom and tei containers and remove their data:
 docker-compose stop gedcom-web-view
+docker-compose stop tei
+sleep 3
+
 docker-compose rm gedcom-web-view
 docker-compose rm fetch-gedcom
 docker volume rm -f docker_gedcom
 
-docker-compose stop tei
 docker-compose rm tei
 docker-compose rm fetch-tei
 docker volume rm -f docker_tei
@@ -39,7 +41,7 @@ docker-compose start fetch-tei fetch-gedcom
 
 
 
-docker-compose start iip unicode
+docker-compose start iip uniwebfonts unicode
 
 
 sleep 9

@@ -15,7 +15,6 @@ services:
     entrypoint:
       - /root/fetch-gedcom.sh
     command:
-      - 'https://github.com/cmosher01/genealogical-data.git'
       - 'ssh://git@github.com/cmosher01/genealogical-data-private.git'
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
@@ -76,6 +75,9 @@ services:
 
 
 
+  uniwebfonts:
+    image: cmosher01/universal-web-fonts
+
   unicode:
     image: cmosher01/unicode-web-test
 
@@ -97,4 +99,5 @@ services:
       - gedcom-web-view
       - iip
       - tei
+      - uniwebfonts
       - unicode
