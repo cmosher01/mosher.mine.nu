@@ -1,5 +1,5 @@
 ---
-version: '2'
+version: '3'
 
 volumes:
   gedcom:
@@ -85,6 +85,17 @@ services:
 
 
 
+  webhook:
+    build: ./gedcom-redact
+    volumes:
+      - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+    ports:
+      - "9000:9000"
+
+
+
+
+
   nginx:
     image: nginx
     volumes:
@@ -101,3 +112,4 @@ services:
       - tei
       - uniwebfonts
       - unicode
+      - webhook

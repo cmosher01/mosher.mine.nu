@@ -1,0 +1,15 @@
+[ {
+    "id": "create-redacted-gedcom-mirror",
+    "execute-command": "create-redacted-gedcom-mirror.sh",
+    "command-working-directory": "/root",
+    "pass-arguments-to-command":
+    [ {
+        "source": "payload",
+        "name": "repository.name"
+      }, {
+        "source": "payload",
+        "name": "repository.ssh_url"
+      }
+    ]
+  }
+]

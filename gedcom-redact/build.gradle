@@ -1,0 +1,17 @@
+plugins {
+    id "nebula.ospackage" version "6.2.1" apply false
+}
+
+apply plugin: 'java'
+
+subprojects {
+    apply plugin: 'nebula.ospackage-application'
+
+    assemble {
+        dependsOn buildRpm, buildDeb
+    }
+
+    ospackage {
+        link("/usr/local/bin/${project.name}", "/opt/${project.name}/bin/${project.name}")
+    }
+}

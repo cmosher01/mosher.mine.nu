@@ -1,0 +1,5 @@
+include 'Gedcom-Redact'
+
+rootProject.children.each {
+    it.name = it.name.toLowerCase()
+}

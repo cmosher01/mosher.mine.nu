@@ -28,8 +28,9 @@ docker-compose rm tei
 docker-compose rm fetch-tei
 docker volume rm -f docker_tei
 
-# pull latest versions
+# pull/build latest versions
 docker-compose pull
+docker-compose build
 
 # create volumes, network, and containers (but don't start)
 docker-compose up --no-start
@@ -41,7 +42,7 @@ docker-compose start fetch-tei fetch-gedcom
 
 
 
-docker-compose start iip uniwebfonts unicode
+docker-compose start iip uniwebfonts unicode webhook
 
 
 sleep 9
