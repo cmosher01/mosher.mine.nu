@@ -1,9 +1,13 @@
-#!/bin/bash -x
+#!/bin/bash
+
+echo "=========================================================== $0"
+
+export LANG=C.UTF-8
 
 export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
 prvnam=$1
-pubnam=${prvgit%-private}
+pubnam=${prvnam%-private}
 
 if [ $pubnam = $prvnam ] ; then
     echo "Private repo name must end with '-private'" >&2
@@ -13,15 +17,35 @@ fi
 prvgit=$2
 pubgit=${prvgit/%-private.git/.git}
 
-if [ ! -d $pubnam ] ; then
+if [ -d $pubnam ] ; then
+    cd $pubnam
+    git fetch
+    git rebase
+    cd -
+else
     git clone $pubgit
 fi
 
-if [ ! -d $prvnam ] ; then
+if [ -d $prvnam ] ; then
+    cd $prvnam
+    git fetch
+    git rebase
+    cd -
+else
     git clone $prvgit
 fi
 
-gedcom-redact $prvnam
+cd $prvnam
+comit=$(git rev-parse HEAD)
+cd -
+
+redact-gedcoms-git-repos.sh $pubnam
 
 cd $pubnam
+git add .
 git status
+git config --global user.email "cmosher01@gmail.com"
+git config --global user.name "Christopher A. Mosher"
+git commit -m "Redacted mirror of $comit"
+git push
+cd -

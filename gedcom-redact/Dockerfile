@@ -19,7 +19,7 @@ RUN Gedcom-Redact/gradlew gedcom-redact:assemble
 RUN dpkg -i Gedcom-Redact/build/distributions/*.deb
 RUN gedcom-redact --help
 
-COPY create-redacted-gedcom-mirror.sh /usr/local/bin
+COPY create-redacted-gedcom-mirror.sh redact-gedcoms-git-repos.sh /usr/local/bin/
 COPY webhook.json ./
 ENTRYPOINT ["/usr/bin/webhook"]
 CMD ["-verbose","-hooks","webhook.json"]
