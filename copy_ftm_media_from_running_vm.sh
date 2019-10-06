@@ -42,20 +42,24 @@ mkdir $dest
 # copy media from relevant FTM trees to destination directory
 for t in \
     'Colvin' \
-    'cranson' \
     'Disosway' \
     'Flandreau' \
     'Harrison' \
     'Justice' \
     'Lopez' \
     'Lovejoy' \
+    'McLaughlin' \
     'Mosher' \
     'Pettit' \
     'Romero' \
-    'Roth' \
     'Spohner' \
     'Taylorson' \
-    'Taylerson_Taylorson(1)'
+    'Taylerson_Taylorson(1)' \
+    'root' \
+    'rapp_kansas' \
+    'Roth' \
+    'Murray_Lougheed_Wilson_Vandever' \
+    'rollo_research'
 do
     echo "======================================================================="
     ls -ld "$t Media"
