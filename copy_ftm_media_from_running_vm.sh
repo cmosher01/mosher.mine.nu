@@ -54,7 +54,7 @@ for t in \
     'Romero' \
     'Spohner' \
     'Taylorson' \
-    'Taylerson_Taylorson(1)' \
+    'Tutankhamun' \
     'root' \
     'rapp_kansas' \
     'Roth' \
