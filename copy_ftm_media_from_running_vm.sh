@@ -41,6 +41,7 @@ mkdir $dest
 
 # copy media from relevant FTM trees to destination directory
 for t in \
+    'Joseph' \
     'Colvin' \
     'Disosway' \
     'Flandreau' \
