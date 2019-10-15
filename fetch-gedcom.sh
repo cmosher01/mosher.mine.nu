@@ -21,4 +21,4 @@ cp -v ./src/*/*.ged ./gedcom/
 rm -Rf src
 tree
 
-touch ./gedcom/SERVE_PUBLIC_GED_FILES
+cp /root/authorized.emails ./gedcom/SERVE_PUBLIC_GED_FILES

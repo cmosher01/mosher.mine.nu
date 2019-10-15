@@ -19,6 +19,7 @@ services:
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
       - './fetch-gedcom.sh:/root/fetch-gedcom.sh:ro'
+      - './authorized.emails:/root/authorized.emails:ro'
       - "gedcom:/root/gedcom"
 
   gedcom-web-view:
@@ -29,7 +30,7 @@ services:
       - fetch-gedcom
     environment:
       GUEST_PASSWORD: "${GED_PASSWORD}"
-    command: gedcom-web-view
+      CLIENT_ID: "${CLIENT_ID}"
 
 
 
