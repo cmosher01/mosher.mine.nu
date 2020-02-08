@@ -20,16 +20,14 @@ services:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
       - './fetch-gedcom.sh:/root/fetch-gedcom.sh:ro'
       - './authorized.emails:/root/authorized.emails:ro'
-      - "gedcom:/root/gedcom"
+      - "gedcom:/root/shared"
 
   gedcom-web-view:
     image: cmosher01/gedcom-web-view
     volumes:
-      - "gedcom:/home/gradle/gedcom:ro"
-    depends_on:
-      - fetch-gedcom
+      - "gedcom:/home/user/shared:ro"
+    working_dir: "/home/user/shared"
     environment:
-      GUEST_PASSWORD: "${GED_PASSWORD}"
       CLIENT_ID: "${CLIENT_ID}"
 
 
@@ -50,9 +48,7 @@ services:
   tei:
     image: cmosher01/tei-server
     volumes:
-      - "tei:/home/gradle/srv:ro"
-    depends_on:
-      - fetch-tei
+      - "tei:/home/user:ro"
     environment:
       GUEST_PASSWORD: "${TEI_PASSWORD}"
 
@@ -90,6 +86,7 @@ services:
     build: ./gedcom-redact
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+      - './gedcom-master-skel:/root/gedcom-master-skel'
     ports:
       - "9000:9000"
 
@@ -107,10 +104,3 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    depends_on:
-      - gedcom-web-view
-      - iip
-      - tei
-      - uniwebfonts
-      - unicode
-      - webhook

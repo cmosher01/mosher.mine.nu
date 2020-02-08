@@ -49,3 +49,5 @@ git config --global user.name "Christopher A. Mosher"
 git commit -m "Redacted mirror of $comit"
 git push
 cd -
+
+attach-mosher-trees.sh $prvnam
