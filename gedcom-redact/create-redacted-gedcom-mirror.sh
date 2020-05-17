@@ -39,6 +39,7 @@ cd $prvnam
 comit=$(git rev-parse HEAD)
 cd -
 
+echo "start redact-gedcoms-git-repos..."
 redact-gedcoms-git-repos.sh $pubnam
 
 cd $pubnam
@@ -50,4 +51,5 @@ git commit -m "Redacted mirror of $comit"
 git push
 cd -
 
+echo "start attach-mosher-trees..."
 attach-mosher-trees.sh $prvnam
