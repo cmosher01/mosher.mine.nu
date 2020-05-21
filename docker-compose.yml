@@ -39,7 +39,7 @@ services:
     entrypoint:
       - /root/fetch-tei.sh
     command:
-      - 'ssh://git@github.com/cmosher01/tei-sources.git'
+      - 'ssh://git@github.com/cmosher01/genealogical-document-transcriptions.git'
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
       - './fetch-tei.sh:/root/fetch-tei.sh:ro'
