@@ -49,8 +49,6 @@ services:
     image: cmosher01/tei-server
     volumes:
       - "tei:/home/user:ro"
-    environment:
-      GUEST_PASSWORD: "${TEI_PASSWORD}"
 
 
 
