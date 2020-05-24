@@ -48,5 +48,5 @@ docker-compose start iip uniwebfonts unicode webhook
 sleep 9
 docker-compose start tei gedcom-web-view
 
-sleep 7
+sleep 9
 docker-compose start nginx
