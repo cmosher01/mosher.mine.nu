@@ -49,7 +49,7 @@ docker-compose start fetch-tei fetch-gedcom
 
 docker-compose start iip uniwebfonts unicode webhook
 
-sleep 5
+sleep 9
 docker-compose start tei gedcom-web-view
 
 sleep 9

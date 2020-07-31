@@ -24,6 +24,7 @@ rm -Rf src
 tree
 
 cp /root/authorized.emails ./shared/staging/SERVE_PUBLIC_GED_FILES
+cp /root/REGEX_PATH_TO_URL ./shared/staging/REGEX_PATH_TO_URL
 
 # rename staging to gedcom (an atomic operation)
 # so Gedcom-Web-View will start reading *.ged files from it
