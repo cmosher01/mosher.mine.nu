@@ -7,7 +7,9 @@ apk add tree
 
 export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no"
 
-# clone all github repos, each into their own subdirectory under src directory
+ls -al ~/.ssh
+
+echo "clone all github repos, each into their own subdirectory under src directory..."
 cd
 mkdir src
 cd src
@@ -15,17 +17,27 @@ for r in "$@" ; do
     git clone "$r"
 done
 
-# copy top-level (only) *.ged files from all repos into staging directory
+for d in * ; do
+    cd $d
+    ls -l *.ged
+    git log -n 5
+    git diff --stat HEAD^
+    cd ..
+done
+
+echo "copy top-level (only) *.ged files from all repos into staging directory..."
 # (files in subdirectories will not be served)
 cd
 mkdir -p ./shared/staging/
 cp -v ./src/*/*.ged ./shared/staging/
-rm -Rf src
+rm -Rfv src
 tree
 
-cp /root/authorized.emails ./shared/staging/SERVE_PUBLIC_GED_FILES
-cp /root/REGEX_PATH_TO_URL ./shared/staging/REGEX_PATH_TO_URL
+cp -v /root/authorized.emails ./shared/staging/SERVE_PUBLIC_GED_FILES
+cp -v /root/REGEX_PATH_TO_URL ./shared/staging/REGEX_PATH_TO_URL
 
-# rename staging to gedcom (an atomic operation)
+echo "rename staging to gedcom (an atomic operation)..."
 # so Gedcom-Web-View will start reading *.ged files from it
-mv ./shared/staging ./shared/gedcom
+cd shared
+rm -Rfv gedcom
+mv -nv staging gedcom

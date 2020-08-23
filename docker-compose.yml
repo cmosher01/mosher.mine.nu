@@ -18,6 +18,7 @@ services:
       - 'ssh://git@github.com/cmosher01/genealogical-data-private.git'
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+      - '~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro'
       - './fetch-gedcom.sh:/root/fetch-gedcom.sh:ro'
       - './authorized.emails:/root/authorized.emails:ro'
       - './REGEX_PATH_TO_URL:/root/REGEX_PATH_TO_URL:ro'
@@ -43,6 +44,7 @@ services:
       - 'ssh://git@github.com/cmosher01/genealogical-document-transcriptions.git'
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+      - '~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro'
       - './fetch-tei.sh:/root/fetch-tei.sh:ro'
       - "tei:/root/tei"
 
@@ -58,7 +60,7 @@ services:
   iip:
     image: antage/iipimage-server
     volumes:
-      - "./images:/srv:ro"
+      - "/srv/images:/srv:ro"
     environment:
       LOGFILE: 'syslog'
       VERBOSITY: '6'
@@ -85,6 +87,7 @@ services:
     build: ./gedcom-redact
     volumes:
       - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
+      - '~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro'
       - './gedcom-master-skel:/root/gedcom-master-skel'
     ports:
       - "9000:9000"
@@ -100,7 +103,9 @@ services:
       - '/etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro'
       - '/etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro'
       - './mosher.mine.nu:/srv:ro'
-      - '/home/user/dev/local/wingeneal/shared/FTM_DOCUMENTS:/srv/ftm:ro'
+      - '/srv/ftm:/srv/ftm:ro'
+      - '/srv/vep:/srv/vep:ro'
+      - '/srv/audio:/srv/audio:ro'
     ports:
       - "80:80"
       - "443:443"
