@@ -96,6 +96,17 @@ services:
 
 
 
+  ftm-web-view:
+    image: cmosher01/ftm-web-view
+    environment:
+      ftm_dir: '/srv'
+    volumes:
+      - '/srv/ftm:/srv:ro'
+
+
+
+
+
   nginx:
     image: nginx
     volumes:
