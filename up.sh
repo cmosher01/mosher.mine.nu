@@ -45,6 +45,8 @@ docker-compose up --no-start
 
 
 
+docker-compose start ftm-web-view
+
 docker-compose start fetch-tei fetch-gedcom
 
 docker-compose start iip uniwebfonts unicode webhook
