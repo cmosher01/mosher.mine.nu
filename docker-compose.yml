@@ -2,7 +2,6 @@
 version: '3'
 
 volumes:
-  gedcom:
   tei:
 
 
@@ -10,32 +9,6 @@ volumes:
 
 
 services:
-  fetch-gedcom:
-    image: alpine
-    entrypoint:
-      - /root/fetch-gedcom.sh
-    command:
-      - 'ssh://git@github.com/cmosher01/genealogical-data-private.git'
-    volumes:
-      - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
-      - '~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro'
-      - './fetch-gedcom.sh:/root/fetch-gedcom.sh:ro'
-      - './authorized.emails:/root/authorized.emails:ro'
-      - './REGEX_PATH_TO_URL:/root/REGEX_PATH_TO_URL:ro'
-      - 'gedcom:/root/shared'
-
-  gedcom-web-view:
-    image: cmosher01/gedcom-web-view
-    volumes:
-      - "gedcom:/home/user/shared:ro"
-    working_dir: "/home/user/shared"
-    environment:
-      CLIENT_ID: "${CLIENT_ID}"
-
-
-
-
-
   fetch-tei:
     image: alpine
     entrypoint:
