@@ -1,7 +1,11 @@
-@import url("https://mosher.mine.nu/uniwebfonts/css/reset.css");
 @import url("https://mosher.mine.nu/uniwebfonts/css/solarized.css");
 @import url("https://mosher.mine.nu/uniwebfonts/css/fonts.css");
 @import url("https://use.typekit.net/kuy2fgn.css");
+
+a {
+  text-decoration: unset;
+  color: unset;
+}
 
 body {
   margin: 6ex 4em 12ex 4em;
@@ -44,7 +48,7 @@ h1 {
   color: var(--sol-orange);
 }
 
-.small {
+small {
   font-size: 14pt;
   color: var(--sol-base1);
 }
@@ -71,9 +75,17 @@ hr {
   float: right;
 }
 
+.float-c {
+  clear: both;
+}
+
 .kanji {
   font-size: 33pt;
   writing-mode: vertical-lr;
   font-family: Code2000;
   color: var(--sol-cyan);
+}
+
+p {
+  line-height: 0.75;
 }
