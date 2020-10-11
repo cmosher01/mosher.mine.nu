@@ -1,0 +1,79 @@
+@import url("https://mosher.mine.nu/uniwebfonts/css/reset.css");
+@import url("https://mosher.mine.nu/uniwebfonts/css/solarized.css");
+@import url("https://mosher.mine.nu/uniwebfonts/css/fonts.css");
+@import url("https://use.typekit.net/kuy2fgn.css");
+
+body {
+  margin: 6ex 4em 12ex 4em;
+}
+
+.oldfont {
+  font-family: english, serif;
+  font-size: 24pt;
+  text-rendering: geometricPrecision;
+  font-kerning: normal;
+  font-feature-settings: "kern", "liga", "hlig", "dlig", "onum";
+  color: var(--sol-base01);
+}
+
+a:hover {
+    background-color: var(--sol-base2);
+    color: var(--sol-orange);
+}
+
+.salt {
+  font-feature-settings: "kern", "liga", "hlig", "dlig", "onum", "salt", "ss01";
+}
+
+sup {
+  font-size: 75%;
+}
+
+.sc {
+  font-variant: small-caps;
+}
+
+.the {
+  position: relative;
+  top: -20px;
+  left: -6px;
+}
+
+h1 {
+  font-weight: normal;
+  color: var(--sol-orange);
+}
+
+.small {
+  font-size: 14pt;
+  color: var(--sol-base1);
+}
+
+ol {
+  list-style-type: lower-roman;
+  -webkit-padding-start: 0; /* reset chrome */
+  padding-left: 1.667em; /* width of roman numerals */
+}
+
+ol > li:nth-child(4n) {
+  margin-bottom: 1.5ex;
+}
+
+hr {
+  margin-top: 4ex;
+}
+
+.hi {
+  color: var(--sol-green);
+}
+
+.float-r {
+  float: right;
+}
+
+.kanji {
+  font-size: 33pt;
+  writing-mode: vertical-lr;
+  font-family: Code2000;
+  color: var(--sol-cyan);
+}
