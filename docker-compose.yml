@@ -35,12 +35,13 @@ services:
     volumes:
       - "/srv/images:/srv:ro"
     environment:
-      LOGFILE: 'syslog'
+      LOGFILE: '/tmp/iip.log'
       VERBOSITY: '6'
       FILESYSTEM_PREFIX: '/srv'
       WATERMARK: '/srv/watermark.tif'
       WATERMARK_PROBABILITY: '.5'
       WATERMARK_OPACITY: '.5'
+      MAX_CVT: '500000'
 
 
 
