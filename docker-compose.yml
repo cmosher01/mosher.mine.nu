@@ -57,19 +57,6 @@ services:
 
 
 
-  webhook:
-    build: ./gedcom-redact
-    volumes:
-      - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
-      - '~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro'
-      - './gedcom-master-skel:/root/gedcom-master-skel'
-    ports:
-      - "9000:9000"
-
-
-
-
-
   ftm-web-view:
     image: cmosher01/ftm-web-view
     environment:

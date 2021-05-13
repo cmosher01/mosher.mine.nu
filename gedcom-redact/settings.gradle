@@ -1,5 +1,0 @@
-include 'Gedcom-Redact','Gedcom-Uid','Gedcom-Cull','Gedcom-Attach'
-
-rootProject.children.each {
-    it.name = it.name.toLowerCase()
-}

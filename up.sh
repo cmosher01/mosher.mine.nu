@@ -37,7 +37,7 @@ docker-compose build
 # create volumes, network, and containers (but don't start)
 docker-compose up --no-start
 
-docker-compose start fetch-tei ftm-web-view iip uniwebfonts unicode webhook
+docker-compose start fetch-tei ftm-web-view iip uniwebfonts unicode
 
 sleep 9
 docker-compose start tei
