@@ -20,7 +20,7 @@ docker-compose rm -f tei
 docker-compose rm -f fetch-tei
 sleep 2
 
-docker volume rm -f docker_tei
+docker volume rm -f mosherminenu_tei
 
 
 
