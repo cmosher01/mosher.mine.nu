@@ -62,6 +62,7 @@ services:
     environment:
       ftm_dir: '/srv'
       CLIENT_ID: "${CLIENT_ID}"
+      FTM_COPYRIGHT: "Copyright © 1998–2021, by Christopher Alan Mosher, Shelton, Connecticut, USA, https://mosher.mine.nu , mailto:cmosher01@gmail.com . This work is licensed under a CC BY-SA 4.0 license."
     volumes:
       - '/srv/ftm:/srv:ro'
 
