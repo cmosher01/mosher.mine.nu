@@ -1,14 +1,18 @@
 ---
-version: '3'
-
 volumes:
   tei:
+  war:
+  archive:
+  tomcat_logs:
+  tomcat_work:
+  tomcat_temp:
 
 
 
 
 
 services:
+
   fetch-tei:
     image: alpine
     entrypoint:
@@ -47,6 +51,79 @@ services:
 
 
 
+  tei2:
+    image: 'tomcat:jdk17-corretto'
+    command:
+      - '/root/init.sh'
+      - '/srv/genealogical-document-transcriptions/genealogy/ genealogy'
+    volumes:
+      - type: volume
+        source: 'archive'
+        target: '/srv'
+        read_only: true
+      - type: volume
+        source: 'war'
+        target: '/root/war'
+        read_only: true
+      - type: bind
+        source: './tei/tomcat/init.sh'
+        target: '/root/init.sh'
+        read_only: true
+      - type: bind
+        source: './tei/tomcat/conf'
+        target: '/usr/local/tomcat/conf'
+        read_only: true
+      - type: volume
+        source: tomcat_logs
+        target: '/usr/local/tomcat/logs'
+      - type: volume
+        source: tomcat_work
+        target: '/usr/local/tomcat/work'
+      - type: volume
+        source: tomcat_temp
+        target: '/usr/local/tomcat/temp'
+    healthcheck:
+      test: 'curl -f http://localhost:8080/health'
+      interval: 10s
+      timeout: 2s
+      retries: 1
+      start_period: 3s
+
+  war:
+    image: alpine
+    volumes:
+      - type: volume
+        source: 'war'
+        target: '/root/war'
+    entrypoint:
+      - '/bin/sh'
+      - '-c'
+    command:
+      - >
+        apk add maven &&
+        mvn org.apache.maven.plugins:maven-dependency-plugin:2.8:get \
+            -Dartifact=nu.mine.mosher.servlet:xml-servlet:LATEST:war &&
+        cp -v ~/.m2/repository/nu/mine/mosher/servlet/xml-servlet/*/* /root/war/
+
+  archive:
+    image: alpine
+    volumes:
+      - type: volume
+        source: 'archive'
+        target: '/srv'
+    entrypoint:
+      - '/bin/sh'
+      - '-c'
+    command:
+      - >
+        apk add git &&
+        cd /srv &&
+        git clone --depth=1 https://github.com/cmosher01/genealogical-document-transcriptions.git
+
+
+
+
+
   uniwebfonts:
     image: cmosher01/universal-web-fonts
 
@@ -73,7 +150,7 @@ services:
   nginx:
     image: nginx
     volumes:
-      - './nginx.conf:/etc/nginx/nginx.conf:ro'
+      - './nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
       - '/etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro'
       - '/etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro'
       - './mosher.mine.nu:/srv:ro'
