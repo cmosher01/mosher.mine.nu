@@ -20,6 +20,8 @@ sleep 5
 docker-compose rm -f tei
 docker-compose rm -f fetch-tei
 docker-compose rm -f tei2
+docker-compose rm -f archive
+docker-compose rm -f war
 sleep 2
 
 docker volume rm -f mosherminenu_tei
