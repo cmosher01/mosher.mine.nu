@@ -12,6 +12,10 @@ if [ -e ROOT ] ; then
 else
   mkdir ROOT
   cd ROOT
+  until [ -f /root//war/ready ] ; do
+    sleep 4
+  done
+  sleep 1
   jar xvf /root/war/*.war
   ln -v -s $1
 fi
