@@ -2,7 +2,6 @@
 version: '3'
 
 volumes:
-  tei:
   war:
   archive:
   tomcat_logs:
@@ -14,27 +13,6 @@ volumes:
 
 
 services:
-
-  fetch-tei:
-    image: alpine
-    entrypoint:
-      - /root/fetch-tei.sh
-    command:
-      - 'ssh://git@github.com/cmosher01/genealogical-document-transcriptions.git'
-    volumes:
-      - '~/.ssh/id_rsa:/root/.ssh/id_rsa:ro'
-      - '~/.ssh/id_rsa.pub:/root/.ssh/id_rsa.pub:ro'
-      - './fetch-tei.sh:/root/fetch-tei.sh:ro'
-      - "tei:/root/tei"
-
-  tei:
-    image: cmosher01/tei-server
-    volumes:
-      - "tei:/home/user:ro"
-
-
-
-
 
   iip:
     image: antage/iipimage-server
@@ -53,7 +31,7 @@ services:
 
 
 
-  tei2:
+  tei:
     image: 'tomcat:jdk17-corretto'
     command:
       - '/root/init.sh'
