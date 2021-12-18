@@ -14,12 +14,9 @@ sleep 2
 
 # stop tei container and remove its data:
 docker-compose stop tei
-docker-compose stop tei2
 sleep 5
 
 docker-compose rm -f tei
-docker-compose rm -f fetch-tei
-docker-compose rm -f tei2
 docker-compose rm -f archive
 docker-compose rm -f war
 sleep 2
@@ -34,9 +31,8 @@ docker volume rm -f mosherminenu_tomcat_temp
 
 
 
-# pull/build latest versions
+# pull latest versions
 docker-compose pull
-docker-compose build
 
 
 
@@ -45,10 +41,10 @@ docker-compose build
 # create volumes, network, and containers (but don't start)
 docker-compose up --no-start
 
-docker-compose start fetch-tei war archive ftm-web-view iip uniwebfonts unicode
+docker-compose start war archive ftm-web-view iip uniwebfonts unicode
 
 sleep 9
-docker-compose start tei tei2
+docker-compose start tei
 
 sleep 9
 docker-compose start nginx
