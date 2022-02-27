@@ -35,7 +35,7 @@ services:
     image: 'tomcat:jdk17-corretto'
     command:
       - '/root/init.sh'
-      - '/srv/genealogical-document-transcriptions/genealogy/ genealogy'
+      - '/srv/genealogical-document-transcriptions/genealogy'
     volumes:
       - type: volume
         source: 'archive'
@@ -118,11 +118,21 @@ services:
   ftm-web-view:
     image: cmosher01/ftm-web-view
     environment:
+#      ftm_public_access: 'public'
       ftm_dir: '/srv'
       CLIENT_ID: "${CLIENT_ID}"
-      FTM_COPYRIGHT: "Copyright © 1998–2021, by Christopher Alan Mosher, Shelton, Connecticut, USA, https://mosher.mine.nu , mailto:cmosher01@gmail.com . This work is licensed under a CC BY-SA 4.0 license."
+      FTM_COPYRIGHT: "Copyright © 1998–2022, by Christopher Alan Mosher, Shelton, Connecticut, USA, https://mosher.mine.nu , mailto:cmosher01@gmail.com . This work is licensed under a CC BY-SA 4.0 license."
     volumes:
       - '/srv/ftm:/srv:ro'
+
+
+
+
+
+#  demo:
+#    image: "cmosher01/gedcom-web-view"
+#    volumes:
+#      - "./demo:/home/user/gedcom:ro"
 
 
 
