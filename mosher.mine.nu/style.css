@@ -55,7 +55,6 @@ small {
 
 ol {
   list-style-type: lower-roman;
-  -webkit-padding-start: 0; /* reset chrome */
   padding-left: 1.667em; /* width of roman numerals */
 }
 
@@ -84,8 +83,4 @@ hr {
   writing-mode: vertical-lr;
   font-family: Code2000;
   color: var(--sol-cyan);
-}
-
-p {
-  line-height: 0.75;
 }
