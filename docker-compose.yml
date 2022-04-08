@@ -129,15 +129,6 @@ services:
 
 
 
-#  demo:
-#    image: "cmosher01/gedcom-web-view"
-#    volumes:
-#      - "./demo:/home/user/gedcom:ro"
-
-
-
-
-
   nginx:
     image: nginx
     volumes:
@@ -148,6 +139,7 @@ services:
       - '/srv/ftm:/srv/ftm:ro'
       - '/srv/vep:/srv/vep:ro'
       - '/srv/audio:/srv/audio:ro'
+      - '/srv/doc:/srv/doc:ro'
     ports:
       - "80:80"
       - "443:443"
