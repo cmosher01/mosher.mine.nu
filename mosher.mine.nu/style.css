@@ -84,3 +84,19 @@ hr {
   font-family: Code2000;
   color: var(--sol-cyan);
 }
+
+.hidden {
+    display: none;
+}
+
+.italic {
+    font-style: italic;
+}
+
+.box {
+    width: 600px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+    hyphens: auto;
+}
