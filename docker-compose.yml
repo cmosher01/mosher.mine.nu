@@ -117,7 +117,7 @@ services:
 
 
   ftm-web-view:
-    image: cmosher01/ftm-web-view
+    image: ghcr.io/cmosher01/ftm-web-view
     environment:
       ftm_dir: '/srv'
       CLIENT_ID: "${CLIENT_ID}"
