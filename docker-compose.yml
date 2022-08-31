@@ -107,7 +107,7 @@ services:
 
 
   uniwebfonts:
-    image: cmosher01/universal-web-fonts
+    image: ghcr.io/cmosher01/plainwebcss
 
   unicode:
     image: cmosher01/unicode-web-test
