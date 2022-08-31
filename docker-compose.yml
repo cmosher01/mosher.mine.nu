@@ -93,14 +93,20 @@ services:
       - type: volume
         source: 'archive'
         target: '/srv'
+      - type: bind
+        source: './tei_rsa'
+        target: '/root/.ssh/id_rsa'
+        read_only: true
     entrypoint:
       - '/bin/sh'
       - '-c'
     command:
       - >
-        apk add git &&
+        apk add git openssh &&
         cd /srv &&
-        git clone --depth=1 https://github.com/cmosher01/genealogical-document-transcriptions.git
+        export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&
+        ls -l /root/.ssh &&
+        git clone --depth=1 git@github.com:cmosher01/genealogical-document-transcriptions.git
 
 
 
