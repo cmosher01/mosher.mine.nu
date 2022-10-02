@@ -1,8 +1,7 @@
 ---
-version: '3.7'
+version: '3.8'
 
 volumes:
-  war:
   archive:
   tomcat_logs:
   tomcat_work:
@@ -33,26 +32,11 @@ services:
 
 
   tei:
-    image: 'tomcat:jdk17-corretto'
-    command:
-      - '/root/init.sh'
-      - '/srv/genealogical-document-transcriptions/genealogy'
+    image: "ghcr.io/cmosher01/xml-servlet:latest"
     volumes:
       - type: volume
         source: 'archive'
         target: '/srv'
-        read_only: true
-      - type: volume
-        source: 'war'
-        target: '/root/war'
-        read_only: true
-      - type: bind
-        source: './tei/tomcat/init.sh'
-        target: '/root/init.sh'
-        read_only: true
-      - type: bind
-        source: './tei/tomcat/conf'
-        target: '/usr/local/tomcat/conf'
         read_only: true
       - type: volume
         source: tomcat_logs
@@ -69,23 +53,6 @@ services:
       timeout: 2s
       retries: 1
       start_period: 3s
-
-  war:
-    image: alpine
-    volumes:
-      - type: volume
-        source: 'war'
-        target: '/root/war'
-    entrypoint:
-      - '/bin/sh'
-      - '-c'
-    command:
-      - >
-        apk add maven &&
-        mvn org.apache.maven.plugins:maven-dependency-plugin:2.8:get \
-            -Dartifact=nu.mine.mosher.servlet:xml-servlet:LATEST:war &&
-        cp -v ~/.m2/repository/nu/mine/mosher/servlet/xml-servlet/*/* /root/war/ &&
-        touch /root/war/ready
 
   archive:
     image: alpine
