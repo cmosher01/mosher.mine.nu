@@ -1,5 +1,5 @@
 ---
-version: '3.8'
+version: '3.7'
 
 volumes:
   archive:
@@ -70,10 +70,9 @@ services:
     command:
       - >
         apk add git openssh &&
-        cd /srv &&
         export GIT_SSH_COMMAND="ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no" &&
-        ls -l /root/.ssh &&
-        git clone --depth=1 git@github.com:cmosher01/genealogical-document-transcriptions.git
+        git clone --depth=1 git@github.com:cmosher01/genealogical-document-transcriptions.git &&
+        cp -R genealogical-document-transcriptions/genealogy /srv/
 
 
 
