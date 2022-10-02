@@ -8,13 +8,11 @@ cd "$here"
 
 
 
-# nginx doesn't like when upstream servers go down
 docker-compose stop nginx
 sleep 2
 
-# stop tei container and remove its data:
 docker-compose stop tei
-sleep 5
+sleep 4
 
 docker-compose rm -f tei
 docker-compose rm -f archive
@@ -29,20 +27,18 @@ docker volume rm -f mosherminenu_tomcat_temp
 
 
 
-# pull latest versions
 docker-compose pull
 
 
 
 
 
-# create volumes, network, and containers (but don't start)
 docker-compose up --no-start
 
 docker-compose start archive ftm-web-view iip uniwebfonts unicode
 
-sleep 9
+sleep 8
 docker-compose start tei
 
-sleep 9
+sleep 8
 docker-compose start nginx

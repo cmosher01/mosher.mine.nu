@@ -1,12 +1,12 @@
 ---
-version: '3.7'
+version: "3.7"
 
 volumes:
-  archive:
-  tomcat_logs:
-  tomcat_work:
-  tomcat_temp:
-  ftmwebview_db:
+  "archive":
+  "tomcat_logs":
+  "tomcat_work":
+  "tomcat_temp":
+  "ftmwebview_db":
 
 
 
@@ -14,59 +14,59 @@ volumes:
 
 services:
 
-  iip:
-    image: antage/iipimage-server
+  "iip":
+    image: "antage/iipimage-server"
     volumes:
       - "/srv/images:/srv:ro"
     environment:
-      LOGFILE: '/tmp/iip.log'
-      VERBOSITY: '6'
-      FILESYSTEM_PREFIX: '/srv'
-      WATERMARK: '/srv/watermark.tif'
-      WATERMARK_PROBABILITY: '.5'
-      WATERMARK_OPACITY: '.5'
-      MAX_CVT: '500000'
+      LOGFILE: "/tmp/iip.log"
+      VERBOSITY: "6"
+      FILESYSTEM_PREFIX: "/srv"
+      WATERMARK: "/srv/watermark.tif"
+      WATERMARK_PROBABILITY: ".5"
+      WATERMARK_OPACITY: ".5"
+      MAX_CVT: "500000"
 
 
 
 
 
-  tei:
-    image: "ghcr.io/cmosher01/xml-servlet:latest"
+  "tei":
+    image: "ghcr.io/cmosher01/xml-servlet"
     volumes:
-      - type: volume
-        source: 'archive'
-        target: '/srv'
+      - type: "volume"
+        source: "archive"
+        target: "/srv"
         read_only: true
-      - type: volume
-        source: tomcat_logs
-        target: '/usr/local/tomcat/logs'
-      - type: volume
-        source: tomcat_work
-        target: '/usr/local/tomcat/work'
-      - type: volume
-        source: tomcat_temp
-        target: '/usr/local/tomcat/temp'
+      - type: "volume"
+        source: "tomcat_logs"
+        target: "/usr/local/tomcat/logs"
+      - type: "volume"
+        source: "tomcat_work"
+        target: "/usr/local/tomcat/work"
+      - type: "volume"
+        source: "tomcat_temp"
+        target: "/usr/local/tomcat/temp"
     healthcheck:
-      test: 'curl -f http://localhost:8080/health'
-      interval: 10s
-      timeout: 2s
+      test: "curl -f http://localhost:8080/health"
+      interval: "10s"
+      timeout: "2s"
       retries: 1
-      start_period: 3s
+      start_period: "3s"
 
-  archive:
-    image: alpine
+  "archive":
+    image: "alpine"
     volumes:
-      - type: volume
-        source: 'archive'
-        target: '/srv'
-      - type: bind
-        source: './tei_rsa'
-        target: '/root/.ssh/id_rsa'
+      - type: "volume"
+        source: "archive"
+        target: "/srv"
+      - type: "bind"
+        source: "./tei_rsa"
+        target: "/root/.ssh/id_rsa"
         read_only: true
     entrypoint:
-      - '/bin/sh'
-      - '-c'
+      - "/bin/sh"
+      - "-c"
     command:
       - >
         apk add git openssh &&
@@ -78,42 +78,42 @@ services:
 
 
 
-  uniwebfonts:
-    image: ghcr.io/cmosher01/plainwebcss
+  "uniwebfonts":
+    image: "ghcr.io/cmosher01/plainwebcss"
 
-  unicode:
-    image: cmosher01/unicode-web-test
-
-
+  "unicode":
+    image: "cmosher01/unicode-web-test"
 
 
 
-  ftm-web-view:
-    image: ghcr.io/cmosher01/ftm-web-view
+
+
+  "ftm-web-view":
+    image: "ghcr.io/cmosher01/ftm-web-view"
     environment:
-      ftm_dir: '/srv'
+      ftm_dir: "/srv"
       CLIENT_ID: "${CLIENT_ID}"
       FTM_COPYRIGHT: "Copyright © 1998–2022, by Christopher Alan Mosher, Shelton, Connecticut, USA, https://mosher.mine.nu , mailto:cmosher01@gmail.com . This work is licensed under a CC BY-SA 4.0 license."
       FTM_AUTHOR: "Christopher Alan Mosher"
     volumes:
-      - '/srv/ftm:/srv:ro'
-      - 'ftmwebview_db:/root'
+      - "/srv/ftm:/srv:ro"
+      - "ftmwebview_db:/root"
 
 
 
 
 
-  nginx:
-    image: nginx
+  "nginx":
+    image: "nginx"
     volumes:
-      - './nginx/nginx.conf:/etc/nginx/nginx.conf:ro'
-      - '/etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro'
-      - '/etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro'
-      - './mosher.mine.nu:/srv:ro'
-      - '/srv/ftm:/srv/ftm:ro'
-      - '/srv/vep:/srv/vep:ro'
-      - '/srv/audio:/srv/audio:ro'
-      - '/srv/doc:/srv/doc:ro'
+      - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "/etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro"
+      - "/etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro"
+      - "./mosher.mine.nu:/srv:ro"
+      - "/srv/ftm:/srv/ftm:ro"
+      - "/srv/vep:/srv/vep:ro"
+      - "/srv/audio:/srv/audio:ro"
+      - "/srv/doc:/srv/doc:ro"
     ports:
       - "80:80"
       - "443:443"
