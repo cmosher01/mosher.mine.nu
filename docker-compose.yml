@@ -82,7 +82,7 @@ services:
     image: "ghcr.io/cmosher01/plainwebcss"
 
   "unicode":
-    image: "cmosher01/unicode-web-test"
+    image: "ghcr.io/cmosher01/unicode-web-test"
 
 
 
