@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI
+  xmlns="http://www.tei-c.org/ns/1.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://www.tei-c.org/ns/1.0 ../odd/odd.xsd"
+  xml:lang="en"
+>
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title type="short">simple_sources</title>
+        <title>Simple Sources, TEI for transcription and web display, geared towards genealogy</title>
+      </titleStmt>
+      <publicationStmt>
+        <authority>Christopher Alan Mosher</authority>
+        <pubPlace>Shelton, CT, USA</pubPlace>
+        <date>2018</date>
+        <availability status="restricted">
+          <p>Copyright © 2020, Christopher Alan Mosher, Shelton, Connecticut, USA.</p>
+          <licence target="https://creativecommons.org/licenses/by-sa/4.0/">This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</licence>
+        </availability>
+      </publicationStmt>
+      <sourceDesc>
+        <p/>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+      <schemaSpec ident="simple_sources" defaultExceptions="http://www.tei-c.org/ns/1.0" prefix="tei_" targetLang="en" docLang="en">
+
+        <moduleRef key="tei"/>
+        <moduleRef key="core"/>
+        <moduleRef key="header"/>
+        <moduleRef key="textstructure"/>
+        <moduleRef key="corpus"/>
+        <moduleRef key="msdescription"/>
+        <moduleRef key="namesdates"/>
+        <moduleRef key="transcr"/>
+        <moduleRef key="analysis"/>
+        <moduleRef key="textcrit"/>
+        <moduleRef key="certainty"/>
+        <moduleRef key="figures"/>
+        <moduleRef key="gaiji"/>
+        <moduleRef key="linking"/>
+        <moduleRef key="iso-fs"/>
+
+        <elementSpec ident="hi" mode="change">
+          <attList>
+            <attDef ident="rend" mode="change">
+              <valList type="semi" mode="change">
+                <valItem ident="sup"/>
+                <valItem ident="sub"/>
+                <valItem ident="italic"/>
+                <valItem ident="underline"/>
+                <valItem ident="center"/>
+                <valItem ident="sc"/>
+                <valItem ident="grid"/>
+                <valItem ident="large"/>
+                <valItem ident="rev"/>
+                <valItem ident="flip"/>
+                <valItem ident="turnover"/>
+                <valItem ident="turnunder"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+
+        <classSpec ident="att.datcat" type="atts" mode="delete"/>
+
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
