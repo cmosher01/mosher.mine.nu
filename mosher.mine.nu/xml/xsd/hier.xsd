@@ -29,7 +29,7 @@
     elementFormDefault="qualified"
     attributeFormDefault="qualified"
 >
-    <xs:import namespace="https://mosher.mine.nu/xmlns/lines" schemaLocation="lines.xsd"/>
+    <xs:import namespace="https://mosher.mine.nu/xmlns/lines" schemaLocation="https://mosher.mine.nu/xml/xsd/lines.xsd"/>
 
 
 
