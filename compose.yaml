@@ -105,6 +105,8 @@ services:
       - "/etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro"
       - "/etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro"
       - "./mosher.mine.nu:/srv:ro"
+      - "/etc/letsencrypt/live/cmosher01.org:/etc/nginx/keys/live/cmosher01.org:ro"
+      - "/etc/letsencrypt/archive/cmosher01.org:/etc/nginx/keys/archive/cmosher01.org:ro"
       - "./cmosher01.org:/srv/cmosher01.org:ro"
       - "/srv/ftm:/srv/ftm:ro"
       - "/srv/vep:/srv/vep:ro"
