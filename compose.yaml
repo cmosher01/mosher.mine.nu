@@ -101,9 +101,11 @@ services:
     image: "nginx"
     volumes:
       - "./nginx/nginx.conf:/etc/nginx/nginx.conf:ro"
+      - "./nginx/include:/etc/nginx/include:ro"
       - "/etc/letsencrypt/live/mosher.mine.nu:/etc/nginx/keys/live/mosher.mine.nu:ro"
       - "/etc/letsencrypt/archive/mosher.mine.nu:/etc/nginx/keys/archive/mosher.mine.nu:ro"
       - "./mosher.mine.nu:/srv:ro"
+      - "./cmosher01.org:/srv/cmosher01.org:ro"
       - "/srv/ftm:/srv/ftm:ro"
       - "/srv/vep:/srv/vep:ro"
       - "/srv/audio:/srv/audio:ro"
