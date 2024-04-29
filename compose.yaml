@@ -31,7 +31,7 @@ services:
 
 
   "arkn2t":
-    image: "ghcr.io/cmosher01/ark-n2t"
+    image: "ghcr.io/cmosher01/ark-n2t:main"
     environment:
       "ARK_NAAN": "${ARK_NAAN}"
       "ARK_SHOULDER": "${ARK_SHOULDER}"
