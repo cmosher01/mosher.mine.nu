@@ -4,6 +4,9 @@ volumes:
   "tomcat_work":
   "tomcat_temp":
   "ftmwebview_db":
+  "arkn2t_work":
+  "arkn2t_temp":
+  "arkn2t_db":
 
 
 
@@ -27,6 +30,23 @@ services:
 
 
 
+  "arkn2t":
+    image: "ghcr.io/cmosher01/ark-n2t"
+    environment:
+      "ARK_NAAN": "${ARK_NAAN}"
+      "ARK_SHOULDER": "${ARK_SHOULDER}"
+      "ARK_ACCEL": "${ARK_ACCEL}"
+      "ARK_TRY_ON_BAD_CHECKSUM": "${ARK_TRY_ON_BAD_CHECKSUM}"
+    volumes:
+      - type: volume
+        source: "arkn2t_db"
+        target: "/var/lib/ark-n2t"
+      - type: "volume"
+        source: "arkn2t_work"
+        target: "/usr/local/tomcat/work"
+      - type: "volume"
+        source: "arkn2t_temp"
+        target: "/usr/local/tomcat/temp"
 
   "tei":
     image: "ghcr.io/cmosher01/xml-servlet"
