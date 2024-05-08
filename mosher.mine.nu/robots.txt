@@ -1,2 +1,7 @@
 user-agent: *
-Disallow: /
+Disallow: /ftm
+Disallow: /iip
+Disallow: /images
+Disallow: /unicode
+Disallow: /uniwebfonts
+Disallow: /audio
