@@ -12,8 +12,12 @@ sleep 2
 docker compose stop tei
 sleep 4
 
+docker compose stop ftm-web-view
+sleep 4
+
 docker compose rm -f tei
 docker compose rm -f archive
+docker compose rm -f ftm-web-view
 sleep 2
 
 docker volume rm -f mosherminenu_archive
