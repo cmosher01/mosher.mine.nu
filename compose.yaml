@@ -63,10 +63,10 @@ services:
         target: "/usr/local/tomcat/temp"
     healthcheck:
       test: "curl -f http://localhost:8080/health"
-      interval: "10s"
-      timeout: "2s"
+      interval: "24h"
+      timeout: "17s"
       retries: 1
-      start_period: "3s"
+      start_period: "1m"
 
   "archive":
     image: "alpine"
