@@ -107,7 +107,7 @@ services:
     environment:
       ftm_dir: "/srv"
       CLIENT_ID: "${CLIENT_ID}"
-      FTM_COPYRIGHT: "Copyright © 1998–2024, by Christopher Alan Mosher, Shelton, Connecticut, USA, https://mosher.mine.nu , mailto:cmosher01@gmail.com . This work is licensed under a CC BY-SA 4.0 license."
+      FTM_COPYRIGHT: "Copyright © 1998–2026, by Christopher Alan Mosher, New York, https://mosher.mine.nu , mailto:cmosher01@gmail.com . This work is licensed under a CC BY-SA 4.0 license."
       FTM_AUTHOR: "Christopher Alan Mosher"
     volumes:
       - "/srv/ftm:/srv:ro"
@@ -128,6 +128,8 @@ services:
       - "/etc/letsencrypt/live/cmosher01.org:/etc/nginx/keys/live/cmosher01.org:ro"
       - "/etc/letsencrypt/archive/cmosher01.org:/etc/nginx/keys/archive/cmosher01.org:ro"
       - "./cmosher01.org:/srv/cmosher01.org:ro"
+      - "/etc/letsencrypt/live/cmosher01.net:/etc/nginx/keys/live/cmosher01.net:ro"
+      - "/etc/letsencrypt/archive/cmosher01.net:/etc/nginx/keys/archive/cmosher01.net:ro"
       - "/srv/ftm:/srv/ftm:ro"
       - "/srv/vep:/srv/vep:ro"
       - "/srv/audio:/srv/audio:ro"
